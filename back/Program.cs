@@ -1,20 +1,41 @@
-using DotNetEnv;
-using back.Models;
-using Microsoft.EntityFrameworkCore;
-Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-var dbHost = builder.Configuration["DB_HOST"];
-var dbPort = builder.Configuration["DB_PORT"];
-var dbName = builder.Configuration["DB_NAME"];
-var dbUser = builder.Configuration["DB_USER"];
-var dbPassword = builder.Configuration["DB_PASSWORD"];
-var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
-builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
 app.UseHttpsRedirection();
 
-app.ApplyMigrations();
+var summaries = new[]
+{
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+};
+
+app.MapGet("/weatherforecast", () =>
+{
+    var forecast =  Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return forecast;
+})
+.WithName("GetWeatherForecast");
+
 app.Run();
+
+record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+{
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+}
