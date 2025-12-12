@@ -44,6 +44,7 @@ builder.Services.AddScoped<ISpaceCacheRepository, SpaceCacheRepository>();
 builder.Services.AddHostedService<IssBackgroundService>();
 builder.Services.AddHostedService<ApodBackgroundService>();
 builder.Services.AddHostedService<NeoBackgroundService>();
+builder.Services.AddHostedService<DonkiCMEBackgroundService>();
 builder.Services.AddHttpClient<IssApiService>();
 
 var app = builder.Build();
