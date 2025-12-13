@@ -8,7 +8,7 @@ namespace back.Services;
 public class TelemetryService : ITelemetryService
 {
     private readonly ITelemetryRepository repository;
-    private readonly string outputDir =  @"D:\Files";
+    private readonly string outputDir =  @"TelemetryFiles";
 
     public TelemetryService(ITelemetryRepository repository)
     {
