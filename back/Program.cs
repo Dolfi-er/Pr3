@@ -48,9 +48,12 @@ builder.Services.AddHostedService<DonkiCMEBackgroundService>();
 builder.Services.AddHostedService<DonkiFLRBackgroundService>();
 builder.Services.AddHostedService<SpaceXBackgroundService>();
 builder.Services.AddHostedService<OsdrBackgroundService>();
+builder.Services.AddHostedService<TelemetryBackgroundService>();
 builder.Services.AddScoped<IOdsrService,OsdrService>();
 builder.Services.AddScoped<IOsdrRepository, OsdrRepository>();
 builder.Services.AddScoped<ISpaceCacheService, SpaceCacheService>();
+builder.Services.AddScoped<ITelemetryRepository, TelemetryRepository>();
+builder.Services.AddScoped<ITelemetryService, TelemetryService>();
 builder.Services.AddHttpClient<IssApiService>();
 
 var app = builder.Build();
