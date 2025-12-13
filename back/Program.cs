@@ -50,6 +50,7 @@ builder.Services.AddHostedService<SpaceXBackgroundService>();
 builder.Services.AddHostedService<OsdrBackgroundService>();
 builder.Services.AddScoped<IOdsrService,OsdrService>();
 builder.Services.AddScoped<IOsdrRepository, OsdrRepository>();
+builder.Services.AddScoped<ISpaceCacheService, SpaceCacheService>();
 builder.Services.AddHttpClient<IssApiService>();
 
 var app = builder.Build();
