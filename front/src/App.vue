@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item">
               <router-link to="/jwst" class="nav-link nav-link-retro" active-class="active">
-                <i class="fas fa-hubble me-1"></i> JWST
+                <i class="fas fa-camera-retro me-1"></i> JWST
               </router-link>
             </li>
             <li class="nav-item">

@@ -26,17 +26,17 @@ const routes: RouteRecordRaw[] = [
     path: '/astro',
     name: 'Astro Events',
     component: () => import('../views/AstroEventsView.vue')
+  },{
+    path: '/telemetry',
+    name: 'Telemetry',
+    component: () => import('../views/TelemetryView.vue')
   }/*,
   {
     path: '/apod',
     name: 'APOD',
     component: () => import('../views/ApodView.vue')
-  },
-  {
-    path: '/telemetry',
-    name: 'Telemetry',
-    component: () => import('../views/TelemetryView.vue')
-  }*/
+  }
+  */
 ]
 
 const router = createRouter({
