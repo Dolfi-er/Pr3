@@ -1,4 +1,12 @@
-import api from './api'
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: '/api', // Через прокси Vite
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
 
 export interface SpaceCache {
   id: number
@@ -62,6 +70,16 @@ export interface AstroEvent {
   data: any
 }
 
+export interface OsdrItem {
+  id: number
+  datasetId: string
+  title: string
+  status: string
+  updatedAt: string
+  insertedAt: string
+  raw: string
+}
+
 class SpaceService {
   // ISS данные
   async getIssCurrent() {
@@ -85,10 +103,38 @@ class SpaceService {
     return response.data
   }
 
-  // Space Cache данные
+  // Space Cache данные - ИСПРАВЛЕННЫЙ ПУТЬ
   async getSpaceData(source: string) {
-    const response = await api.get(`/space/${source}/latest`)
-    return response.data
+    try {
+      const response = await api.get(`/space/${source}/latest`)
+      return response.data
+    } catch (error: any) {
+      // Если источник не найден, возвращаем null вместо ошибки
+      if (error.response?.status === 404) {
+        console.log(`No cache data for source: ${source}`)
+        return null
+      }
+      throw error
+    }
+  }
+
+  // Получить все доступные источники кэша
+  async getAllCacheSources() {
+    const sources = ['iss', 'apod', 'neo', 'cme', 'flr', 'spacex', 'osdr_count']
+    const results: Record<string, any> = {}
+    
+    for (const source of sources) {
+      try {
+        const data = await this.getSpaceData(source)
+        if (data) {
+          results[source] = data
+        }
+      } catch (error) {
+        console.log(`Failed to fetch ${source}:`, error)
+      }
+    }
+    
+    return results
   }
 
   // JWST данные

@@ -496,7 +496,8 @@ const cacheSources = ref([
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-primary',
     lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
   },
   {
     name: 'APOD',
@@ -508,7 +509,8 @@ const cacheSources = ref([
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-secondary',
     lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
   },
   {
     name: 'NEO Tracker',
@@ -520,19 +522,34 @@ const cacheSources = ref([
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-warning',
     lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
   },
   {
-    name: 'Solar Activity',
+    name: 'Solar Flares',
     apiName: 'flr',
-    description: 'Solar flares and CME data',
+    description: 'Solar flares data',
     icon: 'fas fa-sun',
     color: 'var(--accent-color)',
     status: 'Unknown',
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-warning',
     lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
+  },
+  {
+    name: 'Coronal Mass Ejection',
+    apiName: 'cme',
+    description: 'CME data',
+    icon: 'fas fa-sun',
+    color: 'var(--warning-color)',
+    status: 'Unknown',
+    statusClass: 'bg-secondary',
+    buttonClass: 'btn-outline-warning',
+    lastFetch: '',
+    loading: false,
+    available: true
   },
   {
     name: 'SpaceX Launches',
@@ -544,43 +561,21 @@ const cacheSources = ref([
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-success',
     lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
   },
   {
-    name: 'JWST Images',
-    apiName: 'jwst',
-    description: 'James Webb Space Telescope',
-    icon: 'fas fa-hubble',
+    name: 'OSDR Count',
+    apiName: 'osdr_count',
+    description: 'OSDR dataset count',
+    icon: 'fas fa-database',
     color: 'var(--info)',
     status: 'Unknown',
     statusClass: 'bg-secondary',
     buttonClass: 'btn-outline-info',
     lastFetch: '',
-    loading: false
-  },
-  {
-    name: 'Astro Events',
-    apiName: 'astro',
-    description: 'Astronomical events calendar',
-    icon: 'fas fa-moon',
-    color: 'var(--text-color)',
-    status: 'Unknown',
-    statusClass: 'bg-secondary',
-    buttonClass: 'btn-outline-light',
-    lastFetch: '',
-    loading: false
-  },
-  {
-    name: 'Telemetry',
-    apiName: 'telemetry',
-    description: 'System telemetry data',
-    icon: 'fas fa-microchip',
-    color: 'var(--primary-color)',
-    status: 'Unknown',
-    statusClass: 'bg-secondary',
-    buttonClass: 'btn-outline-primary',
-    lastFetch: '',
-    loading: false
+    loading: false,
+    available: true
   }
 ])
 
