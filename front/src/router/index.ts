@@ -10,18 +10,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/iss',
     name: 'ISS Tracker',
-    component: () => import('../views/IssView.vue')
-  }/*,
-  {
-    path: '/apod',
-    name: 'APOD',
-    component: () => import('../views/ApodView.vue')
+    component: () => import('../views/IssView.vue'),
   },
   {
     path: '/jwst',
     name: 'JWST',
     component: () => import('../views/JwstView.vue')
-  },
+  },/*
   {
     path: '/space',
     name: 'Space Data',
@@ -31,6 +26,11 @@ const routes: RouteRecordRaw[] = [
     path: '/astro',
     name: 'Astro Events',
     component: () => import('../views/AstroEventsView.vue')
+  },
+  {
+    path: '/apod',
+    name: 'APOD',
+    component: () => import('../views/ApodView.vue')
   },
   {
     path: '/telemetry',
