@@ -23,6 +23,13 @@ export interface IssPosition {
   units: string
 }
 
+export interface IssFetchLog {
+  id: number
+  fetchedAt: string
+  sourceUrl: string
+  payload: string
+}
+
 export interface ApodData {
   url: string
   date: string
@@ -40,6 +47,19 @@ export interface TelemetryData {
   voltage: number
   temp: number
   sourceFile: string
+}
+
+export interface JwstImage {
+  id?: string
+  thumbnail?: string
+  title?: string
+  description?: string
+  url?: string
+}
+
+export interface AstroEvent {
+  body: string
+  data: any
 }
 
 class SpaceService {
@@ -85,15 +105,19 @@ class SpaceService {
     return response.data
   }
 
-  // Телеметрия
-  async getTelemetry() {
-    const response = await api.get('/telemetry')
-    return response.data
-  }
-
   // OSDR данные
   async getOsdrData(limit = 20) {
     const response = await api.get('/osdr/list', { params: { limit } })
+    return response.data
+  }
+
+  async getAllOsdr() {
+    const response = await api.get('/osdr/all')
+    return response.data
+  }
+
+  async syncOsdr() {
+    const response = await api.get('/osdr/sync')
     return response.data
   }
 
