@@ -63,6 +63,10 @@ export const useSpaceStore = defineStore('space', () => {
     }
   }
 
+  const setApodData = (data: ApodData | null) => {
+    apodData.value = data
+  }
+
   const fetchSpaceData = async (source: string) => {
     try {
       const data = await spaceService.getSpaceData(source)
@@ -94,6 +98,7 @@ export const useSpaceStore = defineStore('space', () => {
     
     fetchIssData,
     fetchApod,
+    setApodData, // Добавляем метод
     fetchSpaceData,
     fetchAllSpaceData
   }

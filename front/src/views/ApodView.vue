@@ -425,8 +425,7 @@ const fetchApodByDate = async () => {
       updatedData.date = selectedDate.value
       updatedData.title = `Astronomy Picture of the Day - ${dayjs(selectedDate.value).format('MMMM D, YYYY')}`
       
-      // В реальном приложении здесь был бы вызов API с датой
-      // Временно обновляем локально
+      // Используем метод setApodData из store
       store.setApodData(updatedData)
     }
     
