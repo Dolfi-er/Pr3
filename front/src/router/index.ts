@@ -16,12 +16,12 @@ const routes: RouteRecordRaw[] = [
     path: '/jwst',
     name: 'JWST',
     component: () => import('../views/JwstView.vue')
-  },/*
+  },
   {
     path: '/space',
     name: 'Space Data',
     component: () => import('../views/SpaceDataView.vue')
-  },
+  }/*,
   {
     path: '/astro',
     name: 'Astro Events',
