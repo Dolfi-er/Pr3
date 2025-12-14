@@ -21,12 +21,12 @@ const routes: RouteRecordRaw[] = [
     path: '/space',
     name: 'Space Data',
     component: () => import('../views/SpaceDataView.vue')
-  }/*,
+  },
   {
     path: '/astro',
     name: 'Astro Events',
     component: () => import('../views/AstroEventsView.vue')
-  },
+  }/*,
   {
     path: '/apod',
     name: 'APOD',
