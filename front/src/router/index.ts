@@ -7,11 +7,11 @@ const routes: RouteRecordRaw[] = [
     name: 'Dashboard',
     component: () => import('../views/DashboardView.vue')
   },
-  /*{
+  {
     path: '/iss',
     name: 'ISS Tracker',
     component: () => import('../views/IssView.vue')
-  },
+  }/*,
   {
     path: '/apod',
     name: 'APOD',
