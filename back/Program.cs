@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using System.Text.Json;
+using StackExchange.Redis;
 
 Env.Load();
 
@@ -34,6 +35,11 @@ var dbUser = builder.Configuration["DB_USER"];
 var dbPassword = builder.Configuration["DB_PASSWORD"];
 var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
 
+var redisHost = builder.Configuration["REDIS_HOST"] ;
+var redisPort = builder.Configuration["REDIS_PORT"];
+builder.Services.AddSingleton<IConnectionMultiplexer>(_ =>
+    ConnectionMultiplexer.Connect($"{redisHost}:{redisPort}"));
+
 builder.Services.Configure<ApiUrls>(builder.Configuration.GetSection("Urls"));
 builder.Services.Configure<FetchTimes>(builder.Configuration.GetSection("Time"));
 builder.Services.AddDbContext<Context>(options => options.UseNpgsql(connectionString));
@@ -54,6 +60,7 @@ builder.Services.AddScoped<IOsdrRepository, OsdrRepository>();
 builder.Services.AddScoped<ISpaceCacheService, SpaceCacheService>();
 builder.Services.AddScoped<ITelemetryRepository, TelemetryRepository>();
 builder.Services.AddScoped<ITelemetryService, TelemetryService>();
+builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
 builder.Services.AddHttpClient<IssApiService>();
 builder.Services.AddSingleton<JwstHelper>();
 builder.Services.AddSingleton<AstroHelper>();
