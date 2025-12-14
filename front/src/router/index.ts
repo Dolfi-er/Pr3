@@ -30,13 +30,12 @@ const routes: RouteRecordRaw[] = [
     path: '/telemetry',
     name: 'Telemetry',
     component: () => import('../views/TelemetryView.vue')
-  }/*,
+  },
   {
     path: '/apod',
     name: 'APOD',
     component: () => import('../views/ApodView.vue')
   }
-  */
 ]
 
 const router = createRouter({
